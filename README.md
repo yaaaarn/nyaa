@@ -41,10 +41,10 @@ then add `nyaa.packages.${system}.default` to your `environment.systemPackages` 
 nix develop
 
 # install dependencies
-bun install
+go mod tidy
 
 # build the binary
-bun run build  # produces ./nyaa
+go build .
 ```
 
 ## license
