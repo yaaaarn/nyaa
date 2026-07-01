@@ -52,7 +52,7 @@ type fetchResult struct {
 	err  error
 }
 
-var mdImgRegex = regexp.MustCompile(`(?:\[!\[([^\]]*)\]\((.*?)\)\]\((.*?)\)|!\[([^\]]*)\]\((.*?)\))`)
+var mdImgRegex = regexp.MustCompile(`(?:\[!\[((?:[^\[\]]|\[[^\]]*\])*)\]\((.*?)\)\]\((.*?)\)|!\[((?:[^\[\]]|\[[^\]]*\])*)\]\((.*?)\))`)
 var markerRegex = regexp.MustCompile(`IMGMARKER(\d+)REKRAMGMI`)
 
 func plainLowdown(description string) {
