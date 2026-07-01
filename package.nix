@@ -12,7 +12,8 @@ buildGoModule {
 
   src = ./.;
 
-  vendorHash = "sha256-8vQC2VZXcB3TkI87pPGikurwFQLzUICeWzBF52oTRfo=";
+  proxyVendor = true;
+  vendorHash = "sha256-S9YKUvRgmeI/S797ZSp30RKJZGM6Dwys64MfOy6Pgpg=";
 
   nativeBuildInputs = [ makeBinaryWrapper ];
 
