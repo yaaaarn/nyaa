@@ -16,12 +16,9 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        chafa = pkgs.chafa.overrideAttrs (finalAttrs: {
-          buildInputs = finalAttrs.buildInputs ++ [ pkgs.libwebp ];
-        });
       in
       {
-        packages.default = pkgs.callPackage ./package.nix { inherit chafa; };
+        packages.default = pkgs.callPackage ./package.nix { };
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             go
