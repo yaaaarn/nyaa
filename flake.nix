@@ -17,24 +17,34 @@
 
       forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
     in
-    forAllSystems (
-      system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-      {
-        packages.default = pkgs.callPackage ./package.nix { };
+    {
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.callPackage ./package.nix { };
+        }
+      );
 
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            go
-            gcc
-            cobra-cli
-            lowdown
-            xdg-utils
-            chafa
-          ];
-        };
-      }
-    );
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
+              go
+              gcc
+              cobra-cli
+              lowdown
+              xdg-utils
+              chafa
+            ];
+          };
+        }
+      );
+    };
 }
